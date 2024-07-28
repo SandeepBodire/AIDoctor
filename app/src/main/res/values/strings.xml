@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AIDoctor</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="first_aid_info">
+        The first response in any emergency is to provide the necessary first aid for injured person while waiting for the emergency medical services.
+       \n\nWhen provided with the proper first aid, the victim has a better chance of survival since the extent of damage is contained.
+       \n\nFirst aid helps in fastening the recovery of the victim.
+       \n\nOne of the reasons why first aid is necessary is to control pain.
+       \n\nFirst aid training is essential as it equips you with first aid knowledge and lifesaving skills to handle different health emergencies.
+       \n\nFirst aid certification online programs have made it possible for persons of different educational backgrounds and careers to take up the first aid training and acquire these critical first aid skills.
+       \n\nCPR and First Aid certification and renewal course provide the individual with basic skills for attending to different health emergencies and confidence, which is essential in providing medical treatment.
+    </string>
+</resources>

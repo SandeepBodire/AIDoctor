@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "391585203097",
+    "project_id": "aidoctor-15bfa",
+    "storage_bucket": "aidoctor-15bfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391585203097:android:f799ad874df13f45fc8908",
+        "android_client_info": {
+          "package_name": "com.example.aidoctor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6DOBuP0HQum3IVghcBcU5tQMb_wHVVt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
