@@ -92,7 +92,7 @@ fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Hi, ${UserDetails.getName(context = context)}") },
+                title = { Text(context.getString(R.string.app_title)) },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = Color.Blue,
                     titleContentColor = Color.White

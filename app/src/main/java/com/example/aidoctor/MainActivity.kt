@@ -85,6 +85,7 @@ fun MainScreen(onLoginClick: (value: Int) -> Unit) {
 
 @Composable
 fun SplashScreen() {
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -96,7 +97,7 @@ fun SplashScreen() {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "AI Doctor",
+                text = context.getString(R.string.app_title),
                 color = Color.White,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,

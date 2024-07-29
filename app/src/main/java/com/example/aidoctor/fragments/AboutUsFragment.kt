@@ -97,7 +97,7 @@ fun AboutUsScreen(onBackClicked: () -> Unit) {
             Spacer(modifier = Modifier.width(16.dp))
 
             Text(
-                text = "AboutUs",
+                text = context.getString(R.string.app_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = Color.White
             )

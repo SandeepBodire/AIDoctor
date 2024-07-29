@@ -103,7 +103,7 @@ fun ProfileScreen(onBackClicked: () -> Unit, onLogoutClicked: () -> Unit) {
             Spacer(modifier = Modifier.width(16.dp))
 
             Text(
-                text = "Profile",
+                text = context.getString(R.string.app_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = Color.White
             )

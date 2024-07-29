@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -128,6 +129,7 @@ fun QuestionAnswerScreen(onBackClicked: () -> Unit) {
     var showAnswer by remember { mutableStateOf(false) }
     var countdown by remember { mutableIntStateOf(0) }
 
+    val context = LocalContext.current
 
 
     Column(
@@ -164,7 +166,7 @@ fun QuestionAnswerScreen(onBackClicked: () -> Unit) {
             Spacer(modifier = Modifier.width(16.dp))
 
             Text(
-                text = "Questions",
+                text = context.getString(R.string.app_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = Color.White
             )
