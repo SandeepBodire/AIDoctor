@@ -10,12 +10,15 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -156,7 +159,7 @@ fun saveUserDetails(user: User,context: Context)
     UserDetails.saveName(context,user.name)
     UserDetails.saveGender(context,user.gender)
     UserDetails.saveEmail(context,user.email)
-    UserDetails.saveDateOfBirth(context,user.dateOfBirth)
+//    UserDetails.saveDateOfBirth(context,user.dateOfBirth)
 }
 
 
@@ -174,6 +177,11 @@ fun SignUpScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    // State to hold the selected gender
+    var selectedGender by remember { mutableStateOf("Male") }
+    // List of gender options
+    val genderOptions = listOf("Male", "Female", "Other")
+
     val context = LocalContext.current
 
     Column(
@@ -181,12 +189,12 @@ fun SignUpScreen(navController: NavController) {
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+//        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Register",
             style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
-            modifier = Modifier.padding(bottom = 32.dp)
+            modifier = Modifier.padding(bottom = 32.dp).align(Alignment.CenterHorizontally)
         )
         TextField(
             value = name,
@@ -196,22 +204,51 @@ fun SignUpScreen(navController: NavController) {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
         )
-        TextField(
-            value = gender,
-            onValueChange = { gender = it },
-            label = { Text("Gender") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-        )
-        TextField(
-            value = dateOfBirth,
-            onValueChange = { dateOfBirth = it },
-            label = { Text("Date of Birth") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-        )
+//        TextField(
+//            value = gender,
+//            onValueChange = { gender = it },
+//            label = { Text("Gender") },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(bottom = 16.dp)
+//        )
+
+        Text(text = "Select Gender", style = MaterialTheme.typography.bodyMedium)
+
+        // Gender options as radio buttons
+        genderOptions.forEach { gender ->
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .selectable(
+                        selected = (gender == selectedGender),
+                        onClick = { selectedGender = gender }
+                    )
+                    .padding(vertical = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = (gender == selectedGender),
+                    onClick = { selectedGender = gender }
+                )
+                Text(
+                    text = gender,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
+        }
+
+
+//
+//        TextField(
+//            value = dateOfBirth,
+//            onValueChange = { dateOfBirth = it },
+//            label = { Text("Date of Birth") },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(bottom = 16.dp)
+//        )
         TextField(
             value = email,
             onValueChange = { email = it },
@@ -231,10 +268,22 @@ fun SignUpScreen(navController: NavController) {
         )
         Button(
             onClick = {
-                if (name.isNotEmpty() && gender.isNotEmpty() && dateOfBirth.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                    signUpUser(User(name, gender, dateOfBirth, email, password), context,navController)
-                } else {
-                    Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                when {
+                    name.isEmpty() -> {
+                        Toast.makeText(context, "Please enter your name", Toast.LENGTH_SHORT).show()
+                    }
+                    selectedGender.isEmpty() -> {
+                        Toast.makeText(context, "Please select your gender", Toast.LENGTH_SHORT).show()
+                    }
+                    email.isEmpty() -> {
+                        Toast.makeText(context, "Please enter your email", Toast.LENGTH_SHORT).show()
+                    }
+                    password.isEmpty() -> {
+                        Toast.makeText(context, "Please enter your password", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        signUpUser(User(name, selectedGender, email, password), context, navController)
+                    }
                 }
             },
             modifier = Modifier.fillMaxWidth(),

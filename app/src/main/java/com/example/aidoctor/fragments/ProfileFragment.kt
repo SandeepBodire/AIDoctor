@@ -3,6 +3,7 @@ package com.example.aidoctor.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,11 +17,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,7 +48,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             AIDoctorTheme {
                 ProfileScreen(::navigateToHomeFragment, ::onLogoutClicked)
             }
-
         }
     }
 
@@ -54,25 +59,33 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun onLogoutClicked() {
         UserDetails.saveLoginStatus(requireContext(), false)
+        Toast.makeText(requireContext(), "Logout Successful", Toast.LENGTH_SHORT).show()
 
         val intent = Intent(requireContext(), LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
-
 }
 
-
 @Composable
-fun ProfileScreen(onBackClicked: () -> Unit, onLogoutClicked: () -> Unit) {
-
+fun ProfileScreen(onBackClicked: () -> Unit, onLogoutConfirmed: () -> Unit) {
     val context = LocalContext.current
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
+    var showLogoutDialog by remember { mutableStateOf(false) }
 
+    if (showLogoutDialog) {
+        LogoutDialog(
+            onConfirm = {
+                showLogoutDialog = false
+                onLogoutConfirmed()
+            },
+            onDismiss = { showLogoutDialog = false }
+        )
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
@@ -86,7 +99,6 @@ fun ProfileScreen(onBackClicked: () -> Unit, onLogoutClicked: () -> Unit) {
                 .background(Color.Blue)
                 .padding(vertical = 6.dp, horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
-
         ) {
             Image(
                 painter = painterResource(id = R.drawable.baseline_arrow_back_24),
@@ -95,7 +107,7 @@ fun ProfileScreen(onBackClicked: () -> Unit, onLogoutClicked: () -> Unit) {
                     .width(36.dp)
                     .height(36.dp)
                     .clickable {
-                        onBackClicked.invoke()
+                        onBackClicked()
                         Log.e("TAG", "On Back Image Clicked")
                     }
             )
@@ -115,15 +127,13 @@ fun ProfileScreen(onBackClicked: () -> Unit, onLogoutClicked: () -> Unit) {
                 .padding(12.dp, 0.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             ProfileDetailRow(title = "Name", value = UserDetails.getName(context)!!)
             ProfileDetailRow(title = "Gender", value = UserDetails.getGender(context)!!)
-            ProfileDetailRow(title = "Date of Birth", value = UserDetails.getDateOfBirth(context)!!)
             ProfileDetailRow(title = "Email", value = UserDetails.getEmail(context)!!)
 
             Button(
                 onClick = {
-                    onLogoutClicked.invoke()
+                    showLogoutDialog = true
                 },
                 shape = RoundedCornerShape(8.dp)
             ) {
@@ -135,11 +145,35 @@ fun ProfileScreen(onBackClicked: () -> Unit, onLogoutClicked: () -> Unit) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text("Logout")
             }
-
         }
-
     }
+}
 
+@Composable
+fun LogoutDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(text = "Logout")
+        },
+        text = {
+            Text("Are you sure you want to logout?")
+        },
+        confirmButton = {
+            Button(
+                onClick = onConfirm
+            ) {
+                Text("Yes")
+            }
+        },
+        dismissButton = {
+            Button(
+                onClick = onDismiss
+            ) {
+                Text("No")
+            }
+        }
+    )
 }
 
 @Composable
@@ -157,7 +191,7 @@ fun ProfileDetailRow(title: String, value: String) {
 
         Text(
             text = ":",
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
@@ -165,7 +199,5 @@ fun ProfileDetailRow(title: String, value: String) {
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.weight(2f)
         )
-
-
     }
 }

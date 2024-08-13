@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -100,25 +102,35 @@ fun WhyFirstAidScreen(onBackClicked: () -> Unit) {
             )
         }
 
-        Column(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp, 0.dp)
+                .padding(12.dp),
+            shape = RoundedCornerShape(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
-//            Text(
-//                text = context.getString(R.string.first_aid_info),
-//                style = MaterialTheme.typography.bodySmall,
-//                color = Color.Black
-//            )
 
-            val firstAidInfo = context.getString(R.string.first_aid_info)
-
-            JustifiedText(
-                text = firstAidInfo,
+            Column(
                 modifier = Modifier
-                    .padding(16.dp)
                     .fillMaxWidth()
-            )
+                    .padding(8.dp, 0.dp)
+            ) {
+                Text(
+                    text = "Why first aid?",
+                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 12.dp),
+                    style = MaterialTheme.typography.titleLarge,
+                    color = Color.Black
+                )
+
+                val firstAidInfo = context.getString(R.string.first_aid_info)
+
+                JustifiedText(
+                    text = firstAidInfo,
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
+                )
+            }
         }
 
     }

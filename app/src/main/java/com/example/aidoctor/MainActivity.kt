@@ -99,7 +99,7 @@ fun SplashScreen() {
             Text(
                 text = context.getString(R.string.app_title),
                 color = Color.White,
-                fontSize = 30.sp,
+                fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 24.dp)
             )

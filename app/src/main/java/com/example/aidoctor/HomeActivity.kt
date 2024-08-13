@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.aidoctor.fragments.HomeFragment
 
 class HomeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,7 +23,6 @@ class HomeActivity : AppCompatActivity() {
 
         if (currentFragment is HomeFragment) {
             super.onBackPressed()
-
         } else {
             supportFragmentManager.beginTransaction().replace(R.id.main, HomeFragment()).commit()
         }
