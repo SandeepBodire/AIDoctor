@@ -272,8 +272,6 @@ fun QuestionAnswerScreen(onBackClicked: () -> Unit) {
 
     }
 
-//            } })
-
 
     // Handle countdown timer
     LaunchedEffect(countdown) {

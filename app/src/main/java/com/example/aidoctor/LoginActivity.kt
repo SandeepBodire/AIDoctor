@@ -204,14 +204,6 @@ fun SignUpScreen(navController: NavController) {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
         )
-//        TextField(
-//            value = gender,
-//            onValueChange = { gender = it },
-//            label = { Text("Gender") },
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(bottom = 16.dp)
-//        )
 
         Text(text = "Select Gender", style = MaterialTheme.typography.bodyMedium)
 
@@ -240,15 +232,6 @@ fun SignUpScreen(navController: NavController) {
         }
 
 
-//
-//        TextField(
-//            value = dateOfBirth,
-//            onValueChange = { dateOfBirth = it },
-//            label = { Text("Date of Birth") },
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(bottom = 16.dp)
-//        )
         TextField(
             value = email,
             onValueChange = { email = it },

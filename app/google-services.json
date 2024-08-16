@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "391585203097",
-    "project_id": "aidoctor-15bfa",
-    "storage_bucket": "aidoctor-15bfa.appspot.com"
+    "project_number": "183823796903",
+    "project_id": "firstaid-fc66b",
+    "storage_bucket": "firstaid-fc66b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:391585203097:android:f799ad874df13f45fc8908",
+        "mobilesdk_app_id": "1:183823796903:android:21bfccfc800e1c34e8e982",
         "android_client_info": {
           "package_name": "com.example.aidoctor"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC6DOBuP0HQum3IVghcBcU5tQMb_wHVVt0"
+          "current_key": "AIzaSyDC-5WeGBm0s3B7iMd5E1RzFfOtQuXac1M"
         }
       ],
       "services": {

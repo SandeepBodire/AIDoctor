@@ -17,7 +17,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-//        super.onBackPressed()
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.main)
 

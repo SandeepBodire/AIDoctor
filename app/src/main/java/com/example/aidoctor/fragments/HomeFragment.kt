@@ -192,27 +192,6 @@ fun HomeCard(navController: NavController, title: String, imageName: String, rou
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TextScreen(title: String) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(title) }
-            )
-        },
-        content = { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = title, fontSize = 24.sp)
-            }
-        }
-    )
-}
 
 @Preview(showBackground = true)
 @Composable

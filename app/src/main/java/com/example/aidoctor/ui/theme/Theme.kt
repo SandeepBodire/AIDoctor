@@ -45,15 +45,6 @@ private val LightColorPalette = lightColorScheme(
     secondary = Teal200
 )
 
-@Composable
-fun MyAppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    MaterialTheme(
-        content = content
-    )
-}
 
 @Composable
 fun AIDoctorTheme(
